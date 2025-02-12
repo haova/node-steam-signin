@@ -120,7 +120,9 @@ class SteamSignIn {
 				path: '/openid/login',
 				headers: {
 					'content-type': 'application/x-www-form-urlencoded',
-					'content-length': Buffer.byteLength(encodedBody)
+					'content-length': Buffer.byteLength(encodedBody),
+					'referer': 'https://steamcommunity.com/',
+					'origin': 'https://steamcommunity.com',
 				}
 			}, (res) => {
 				let body = '';
