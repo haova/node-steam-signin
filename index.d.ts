@@ -1,8 +1,12 @@
 // @ts-ignore
-import SteamID from 'steamid';
+import SteamID from "steamid";
+
+type SteamSignInOptions = {
+  agent: any;
+};
 
 declare class SteamSignIn {
-  constructor(realm: string);
+  constructor(realm: string, options?: SteamSignInOptions);
   getUrl(returnUrl: string): string;
   verifyLogin(url: string): Promise<SteamID>;
 }
